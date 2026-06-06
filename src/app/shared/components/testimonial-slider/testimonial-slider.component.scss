@@ -1,0 +1,120 @@
+// src/app/shared/components/testimonial-slider/testimonial-slider.component.scss
+@use '../../../../styles/styles' as *;
+
+.testimonials {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, $blue-50, $teal-50);
+
+  .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+
+  &__header { text-align: center; margin-bottom: 4rem; }
+}
+
+.section-title    { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: $gray-900; margin-bottom: 1rem; }
+.section-subtitle { font-size: 1.125rem; color: $gray-600; max-width: 48rem; margin: 0 auto; line-height: 1.75; }
+
+.slider {
+  position: relative;
+  max-width: 40rem;
+  margin: 0 auto;
+
+  &__track {
+    overflow: hidden;
+  }
+
+  &__btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: $blue-600;
+    color: $white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+
+    &:hover { background: $blue-700; transform: translateY(-50%) scale(1.05); }
+
+    &--prev { left: -3.5rem;  @media (min-width: 640px) { left: -4rem; } }
+    &--next { right: -3.5rem; @media (min-width: 640px) { right: -4rem; } }
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  &__dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background: $blue-200;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.active {
+      background: $blue-600;
+      width: 2rem;
+    }
+  }
+}
+
+.testimonial-card {
+  background: $white;
+  border: 1px solid $gray-100;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+  &__stars {
+    display: flex;
+    gap: 0.125rem;
+    color: $yellow-400;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  &__message {
+    color: $gray-700;
+    font-style: italic;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-size: 1.0625rem;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $blue-400, $teal-400);
+    color: $white;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  h4    { font-weight: 700; color: $gray-900; font-size: 0.9375rem; }
+  &__role { font-size: 0.875rem; color: $gray-600; }
+  &__org  { font-size: 0.8125rem; color: $gray-500; }
+}

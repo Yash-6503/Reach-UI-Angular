@@ -1,0 +1,60 @@
+<!-- src/app/shared/components/platform-capabilities/platform-capabilities.component.html -->
+<section class="platform">
+  <div class="container">
+    <div class="platform__header">
+      <h2 class="section-title">Platform Capabilities</h2>
+      <p class="section-subtitle">
+        Comprehensive healthcare technology platform with AI-powered diagnostics and telemedicine
+      </p>
+    </div>
+
+    <div class="platform__grid">
+      @for (cap of capabilities; track cap.title) {
+        <div class="cap-card">
+          <div class="cap-card__icon">
+            @if (cap.title === 'Patient Management') {
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            }
+            @if (cap.title === 'Diagnostics Ecosystem') {
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            }
+            @if (cap.title === 'Telemedicine Platform') {
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+            }
+            @if (cap.title === 'Analytics & Reporting') {
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            }
+          </div>
+          <h3 class="cap-card__title">{{ cap.title }}</h3>
+          <p class="cap-card__desc">{{ cap.description }}</p>
+          <ul class="cap-card__features">
+            @for (f of cap.features; track f) {
+              <li>{{ f }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+
+    <!-- AI Feature Highlights -->
+    <div class="platform__ai">
+      <h3 class="platform__ai-title">AI &amp; Advanced Features</h3>
+      <div class="platform__ai-grid">
+        @for (feat of aiFeatures; track feat.title) {
+          <div class="ai-feature">
+            <h4>{{ feat.title }}</h4>
+            <p>{{ feat.desc }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

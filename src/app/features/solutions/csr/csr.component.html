@@ -1,0 +1,85 @@
+<!-- src/app/features/solutions/csr/csr.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>For CSR Projects</h1>
+    <p>Build sustainable healthcare access programs with lasting social impact</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Sustainable Healthcare Infrastructure</h2>
+        <p class="text-body">
+          Reach AI enables corporations to fulfill their CSR mandate by deploying sustainable healthcare
+          infrastructure. Create lasting community healthcare centers that serve thousands over years.
+        </p>
+        <ul class="check-list">
+          @for (b of benefits; track b) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ b }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="placeholder-img">CSR Healthcare Initiative Image</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">CSR Impact Models</h2>
+    <div class="grid-3" style="margin-top:2rem">
+      @for (m of models; track m.title) {
+        <div class="info-card">
+          <h3>{{ m.title }}</h3>
+          <p>{{ m.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Measuring Social Impact</h2>
+    <div style="display:flex;flex-direction:column;gap:1.5rem">
+      @for (item of impactMetrics; track item.metric) {
+        <div class="gradient-card">
+          <h3>{{ item.metric }}</h3>
+          <ul>
+            @for (d of item.details; track d) { <li>{{ d }}</li> }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Success Stories</h2>
+    <div class="grid-2">
+      @for (s of stories; track s.title) {
+        <div class="info-card">
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Let's Create Lasting Healthcare Impact</h2>
+    <p>Contact our CSR specialists to design a sustainable healthcare program for your organization.</p>
+    <a href="/contact" class="btn btn--white">Discuss Your CSR Vision</a>
+  </div>
+</section>

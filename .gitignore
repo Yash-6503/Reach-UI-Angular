@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+ 
+# Angular build output
+dist/
+tmp/
+out-tsc/
+bazel-out/
+ 
+# Angular cache
+.angular/
+ 
+# IDEs and editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+ 
+# OS files
+.DS_Store
+Thumbs.db
+ 
+# Environment files (optional - if you have secrets)
+# src/environments/environment.prod.ts
+ 
+# Test coverage
+coverage/
+ 
+# Misc
+*.log
+*.zip
+*.tar.gz

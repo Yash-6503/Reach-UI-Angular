@@ -1,0 +1,358 @@
+/* ============================================================
+   REACH AI MEDTECH – Global Styles
+   Converted from Tailwind CSS to SCSS
+   ============================================================ */
+
+// ── Design Tokens ──────────────────────────────────────────
+$blue-50:   #eff6ff;
+$blue-100:  #dbeafe;
+$blue-200:  #bfdbfe;
+$blue-400:  #60a5fa;
+$blue-600:  #2563eb;
+$blue-700:  #1d4ed8;
+$teal-50:   #f0fdfa;
+$teal-100:  #ccfbf1;
+$teal-200:  #99f6e4;
+$teal-400:  #2dd4bf;
+$teal-500:  #14b8a6;
+$teal-600:  #0d9488;
+$gray-50:   #f9fafb;
+$gray-100:  #f3f4f6;
+$gray-200:  #e5e7eb;
+$gray-300:  #d1d5db;
+$gray-400:  #9ca3af;
+$gray-500:  #6b7280;
+$gray-600:  #4b5563;
+$gray-700:  #374151;
+$gray-900:  #111827;
+$green-500: #22c55e;
+$white:     #ffffff;
+$yellow-400:#facc15;
+
+// ── Reset & Base ────────────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: $white;
+  color: $gray-900;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+// ── Layout Utilities ────────────────────────────────────────
+.container {
+  max-width: 80rem; // 1280px = max-w-7xl
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 640px)  { padding: 0 1.5rem; }
+  @media (min-width: 1024px) { padding: 0 2rem; }
+}
+
+.min-h-screen { min-height: 100vh; }
+.flex         { display: flex; }
+.flex-col     { flex-direction: column; }
+.flex-grow    { flex-grow: 1; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+
+// ── Typography Utilities ─────────────────────────────────────
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: $gray-900;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: $gray-600;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+// ── Button System ────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+
+  &--primary {
+    background-color: $blue-600;
+    color: $white;
+    &:hover {
+      background-color: $blue-700;
+      transform: scale(1.02);
+    }
+  }
+
+  &--outline {
+    border: 2px solid $blue-600;
+    color: $blue-600;
+    background: transparent;
+    &:hover { background-color: $blue-50; }
+  }
+
+  &--outline-white {
+    border: 2px solid $white;
+    color: $white;
+    background: transparent;
+    &:hover {
+      background-color: $white;
+      color: $blue-600;
+    }
+  }
+
+  &--white {
+    background-color: $white;
+    color: $blue-600;
+    &:hover { background-color: $blue-50; }
+  }
+
+  &--sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  &--full { width: 100%; }
+}
+
+// ── Page Hero Banner (shared across pages) ───────────────────
+.page-hero {
+  background: linear-gradient(135deg, $blue-50 0%, $teal-50 100%);
+  padding: 4rem 0;
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: $gray-900;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: $gray-600;
+    max-width: 40rem;
+    line-height: 1.75;
+  }
+}
+
+// ── Card ─────────────────────────────────────────────────────
+.card {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12);
+  }
+
+  &--gradient {
+    background: linear-gradient(135deg, $blue-50, $teal-50);
+    border-color: $blue-100;
+  }
+}
+
+// ── Badge ─────────────────────────────────────────────────────
+.badge {
+  display: inline-block;
+  background-color: $blue-100;
+  color: $blue-700;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+// ── Icon Container ────────────────────────────────────────────
+.icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+
+  &--blue {
+    background-color: $blue-100;
+    color: $blue-600;
+  }
+
+  &--teal {
+    background-color: $teal-100;
+    color: $teal-600;
+  }
+
+  &--sm  { width: 3rem;  height: 3rem; }
+  &--md  { width: 4rem;  height: 4rem; }
+  &--lg  { width: 4rem;  height: 4rem; }
+}
+
+// ── Bullet List ───────────────────────────────────────────────
+.bullet-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: $gray-700;
+    font-size: 0.9375rem;
+
+    &::before {
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background-color: $teal-500;
+      flex-shrink: 0;
+    }
+
+    &.blue::before { background-color: $blue-600; }
+  }
+}
+
+// ── CTA Section (blue gradient) ──────────────────────────────
+.cta-section {
+  background: linear-gradient(135deg, $blue-600, $teal-600);
+  padding: 5rem 0;
+  text-align: center;
+
+  &--flat {
+    background: $blue-600;
+    padding: 4rem 0;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.125rem;
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+// ── Grid Helpers ──────────────────────────────────────────────
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  @media (min-width: 768px) { grid-template-columns: repeat(5, 1fr); }
+}
+
+// ── Fade-in animation ─────────────────────────────────────────
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+// ── WhatsApp FAB ──────────────────────────────────────────────
+.whatsapp-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 40;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: #22c55e;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #16a34a;
+    transform: scale(1.1);
+  }
+}

@@ -1,0 +1,52 @@
+// src/app/features/products/lite/product-lite.component.scss
+@use '../../../../styles/styles' as *;
+
+.page-hero {
+  background: linear-gradient(135deg, $blue-50, $teal-50); padding: 4rem 0;
+  .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+  h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: $gray-900; margin-bottom: 1rem; }
+  p  { font-size: 1.125rem; color: $gray-600; max-width: 36rem; line-height: 1.75; }
+}
+.section { padding: 4rem 0; &--gray { background: $gray-50; }
+  .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+}
+.sec-heading { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; color: $gray-900; margin-bottom: 1.5rem;
+  &.text-center { text-align: center; } }
+.text-body { color: $gray-600; line-height: 1.75; margin-bottom: 1rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem;
+  @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+  &.items-center { align-items: center; } }
+.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem;
+  @media (min-width: 768px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); } }
+
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;
+  li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9375rem; color: $gray-700; } }
+
+.img-wrap img { border-radius: 0.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.1); width: 100%; }
+
+.spec-card { background: $white; border: 1px solid $gray-200; border-radius: 0.75rem; padding: 1.5rem; }
+.spec-label { font-size: 0.875rem; color: $gray-600; margin-bottom: 0.5rem; }
+.spec-value { font-size: 1.5rem; font-weight: 700; color: $blue-600; }
+
+.benefit-card { background: linear-gradient(135deg, $blue-50, $teal-50); border: 1px solid $blue-100; border-radius: 0.75rem; padding: 2rem;
+  h3 { font-weight: 700; color: $gray-900; margin-bottom: 0.5rem; }
+  p  { font-size: 0.9375rem; color: $gray-600; } }
+
+.cta-section { padding: 4rem 0; background: $blue-600; text-align: center;
+  .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+  h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; color: $white; margin-bottom: 2rem; }
+}
+.cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+.btn--white { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: 600; background: $white; color: $blue-600; text-decoration: none; transition: all 0.2s; &:hover { background: $blue-50; transform: scale(1.02); } }
+.btn--outline-white { display: inline-flex; padding: 0.75rem 2rem; border-radius: 0.5rem; font-weight: 600; border: 2px solid $white; color: $white; background: transparent; text-decoration: none; transition: all 0.2s; &:hover { background: $white; color: $blue-600; } }
+.text-center { text-align: center; }

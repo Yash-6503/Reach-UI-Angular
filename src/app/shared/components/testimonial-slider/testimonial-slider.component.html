@@ -1,0 +1,56 @@
+<!-- src/app/shared/components/testimonial-slider/testimonial-slider.component.html -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials__header">
+      <h2 class="section-title">What Our Partners Say</h2>
+      <p class="section-subtitle">
+        Real stories from doctors, NGOs, and organizations transforming healthcare with Reach AI
+      </p>
+    </div>
+
+    <div class="slider">
+      <div class="slider__track" [@slide]="current()">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">
+            @for (s of [1,2,3,4,5]; track s) { <span>★</span> }
+          </div>
+          <p class="testimonial-card__message">"{{ currentTestimonial.message }}"</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">{{ currentTestimonial.avatar }}</div>
+            <div>
+              <h4>{{ currentTestimonial.name }}</h4>
+              <p class="testimonial-card__role">{{ currentTestimonial.role }}</p>
+              <p class="testimonial-card__org">{{ currentTestimonial.organization }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prev Button -->
+      <button class="slider__btn slider__btn--prev" (click)="prev()" aria-label="Previous">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+
+      <!-- Next Button -->
+      <button class="slider__btn slider__btn--next" (click)="next()" aria-label="Next">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+
+      <!-- Indicators -->
+      <div class="slider__dots">
+        @for (i of range(testimonials.length); track i) {
+          <button
+            class="slider__dot"
+            [class.active]="i === current()"
+            (click)="goTo(i)"
+            [attr.aria-label]="'Testimonial ' + (i+1)"
+          ></button>
+        }
+      </div>
+    </div>
+  </div>
+</section>

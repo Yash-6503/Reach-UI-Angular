@@ -1,0 +1,86 @@
+<!-- src/app/features/technology/technology.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Reach AI Technology</h1>
+    <p>Advanced healthcare technology platform powering AI diagnostics and telemedicine at scale</p>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Platform Architecture</h2>
+    <div class="arch-box">
+      <pre class="arch-pre">{{ architectureDiagram }}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading">Technology Stack</h2>
+    <div class="grid-4">
+      @for (tech of techStack; track tech.title) {
+        <div class="tech-card">
+          <h3>{{ tech.title }}</h3>
+          <ul>
+            @for (item of tech.items; track item) {
+              <li>• {{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Core Capabilities -->
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Core Capabilities</h2>
+    <div class="grid-3">
+      @for (cap of capabilities; track cap.title) {
+        <div class="cap-card">
+          <h3>{{ cap.title }}</h3>
+          <p>{{ cap.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Security -->
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading">Security &amp; Compliance</h2>
+    <div class="grid-2">
+      @for (sec of security; track sec.title) {
+        <div class="sec-card">
+          <h3>{{ sec.title }}</h3>
+          <ul>
+            @for (item of sec.items; track item) {
+              <li><span class="dot"></span>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Performance -->
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Scalability &amp; Performance</h2>
+    <div class="grid-3">
+      @for (p of performance; track p.value) {
+        <div class="perf-card">
+          <div class="perf-value">{{ p.value }}</div>
+          <p>{{ p.label }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,171 @@
+// src/app/layout/header/header.component.scss
+@use '../../../styles/styles' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: $white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+
+  .container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+  }
+
+  &__logo-img {
+    height: 2.5rem;
+    width: auto;
+    display: block;
+  }
+
+  &__desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+
+    @media (min-width: 1024px) { display: flex; }
+  }
+
+  &__hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $gray-700;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    @media (min-width: 1024px) { display: none; }
+
+    &:hover { color: $blue-600; }
+  }
+
+  &__mobile-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    border-top: 1px solid $gray-200;
+
+    @media (min-width: 1024px) { display: none; }
+  }
+}
+
+// ── Nav Link ──────────────────────────────────────────────────
+.nav-link {
+  color: $gray-700;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+
+  &:hover, &.active { color: $blue-600; }
+  &.active           { font-weight: 600; }
+}
+
+.mobile-link {
+  padding: 0.75rem 1rem;
+  color: $gray-700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover, &.active { color: $blue-600; }
+  &.active           { font-weight: 600; }
+}
+
+// ── Dropdown ──────────────────────────────────────────────────
+.dropdown {
+  position: relative;
+
+  &__trigger {
+    color: $gray-700;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    transition: color 0.15s ease;
+
+    &:hover { color: $blue-600; }
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    width: 12rem;
+    background: $white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: all 0.2s ease;
+    overflow: hidden;
+    z-index: 100;
+  }
+
+  &:hover &__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &__item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: $gray-700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover { background-color: $blue-50; color: $blue-600; }
+    &:first-child { border-radius: 0.5rem 0.5rem 0 0; }
+    &:last-child  { border-radius: 0 0 0.5rem 0.5rem; }
+  }
+}
+
+// ── Buttons (local overrides use global .btn) ─────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  cursor: pointer;
+
+  &--primary { background: $blue-600; color: $white; border: none; &:hover { background: $blue-700; } }
+  &--sm      { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
+  &--full    { width: calc(100% - 2rem); margin: 0 1rem; }
+}

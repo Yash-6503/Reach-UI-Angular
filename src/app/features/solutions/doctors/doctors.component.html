@@ -1,0 +1,69 @@
+<!-- src/app/features/solutions/doctors/doctors.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>For Doctors &amp; Clinics</h1>
+    <p>Expand your practice beyond physical clinic boundaries with telemedicine and AI-powered diagnostics</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Expand Your Practice</h2>
+        <p class="text-body">
+          Reach AI Lite and Pro help doctors expand their practice beyond the walls of their clinic.
+          Serve more patients, increase revenue, and provide better care with telemedicine and remote diagnostics.
+        </p>
+        <ul class="check-list">
+          @for (b of benefits; track b) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ b }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="placeholder-img">Doctor Consultation Image</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">How It Works for Your Practice</h2>
+    <div class="grid-4" style="margin-top:2rem">
+      @for (s of steps; track s.title) {
+        <div class="step-card">
+          <div class="step-num">{{ s.step }}</div>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">ROI for Your Practice</h2>
+    <div class="grid-3">
+      @for (r of roi; track r.title) {
+        <div class="gradient-card">
+          <h3>{{ r.title }}</h3>
+          <p>{{ r.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Ready to Expand Your Practice?</h2>
+    <a href="/contact" class="btn btn--white">Schedule Your Demo</a>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+<!-- src/app/features/solutions/ngo/ngo.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>For NGOs &amp; Foundations</h1>
+    <p>Deploy affordable healthcare infrastructure in underserved communities</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Affordable Healthcare Access</h2>
+        <p class="text-body">
+          Reach AI Lite is designed for NGOs and health foundations. Deploy healthcare kiosks in rural areas,
+          community centers, and underserved regions to provide dignified access to quality healthcare.
+        </p>
+        <ul class="check-list">
+          @for (b of benefits; track b) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ b }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="placeholder-img">Community Healthcare Image</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Deployment Models for NGOs</h2>
+    <div class="grid-3" style="margin-top:2rem">
+      @for (m of models; track m.title) {
+        <div class="info-card">
+          <h3>{{ m.title }}</h3>
+          <p>{{ m.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Impact Tracking</h2>
+    <div class="grid-2">
+      @for (item of impact; track item.metric) {
+        <div class="gradient-card">
+          <h3>{{ item.metric }}</h3>
+          <p>{{ item.example }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Ready to Expand Healthcare Access?</h2>
+    <p>Contact us to discuss grant funding, partnerships, and deployment options for your NGO.</p>
+    <a href="/contact" class="btn btn--white">Start a Conversation</a>
+  </div>
+</section>

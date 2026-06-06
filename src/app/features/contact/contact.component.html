@@ -1,0 +1,119 @@
+<!-- src/app/features/contact/contact.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Get in Touch</h1>
+    <p>Contact Reach AI to discuss your healthcare technology needs, schedule a demo, or explore partnership opportunities.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Form -->
+      <div class="contact-form-wrap">
+        @if (submitted()) {
+          <div class="success-banner">
+            ✅ Thank you for your inquiry. Our team will contact you soon!
+          </div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group" [class.error]="fieldInvalid('name')">
+              <input formControlName="name" type="text" placeholder="Your Name" />
+              @if (fieldInvalid('name')) { <span class="err">Name is required</span> }
+            </div>
+            <div class="form-group" [class.error]="fieldInvalid('email')">
+              <input formControlName="email" type="email" placeholder="Email" />
+              @if (fieldInvalid('email')) { <span class="err">Valid email required</span> }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" [class.error]="fieldInvalid('organization')">
+              <input formControlName="organization" type="text" placeholder="Organization Name" />
+              @if (fieldInvalid('organization')) { <span class="err">Organization is required</span> }
+            </div>
+            <div class="form-group" [class.error]="fieldInvalid('role')">
+              <input formControlName="role" type="text" placeholder="Your Role" />
+              @if (fieldInvalid('role')) { <span class="err">Role is required</span> }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" [class.error]="fieldInvalid('phone')">
+              <input formControlName="phone" type="tel" placeholder="Phone Number" />
+              @if (fieldInvalid('phone')) { <span class="err">Phone is required</span> }
+            </div>
+            <div class="form-group" [class.error]="fieldInvalid('city')">
+              <input formControlName="city" type="text" placeholder="City" />
+              @if (fieldInvalid('city')) { <span class="err">City is required</span> }
+            </div>
+          </div>
+
+          <div class="form-group full" [class.error]="fieldInvalid('requirement')">
+            <select formControlName="requirement">
+              <option value="">Select Your Requirement</option>
+              <option value="demo">Product Demo</option>
+              <option value="pricing">Get Pricing</option>
+              <option value="partnership">Partnership Discussion</option>
+              <option value="consultation">Deployment Consultation</option>
+              <option value="support">Technical Support</option>
+            </select>
+            @if (fieldInvalid('requirement')) { <span class="err">Please select a requirement</span> }
+          </div>
+
+          <div class="form-group full">
+            <textarea formControlName="message" rows="6"
+              placeholder="Tell us about your healthcare technology needs..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">Send Inquiry</button>
+        </form>
+      </div>
+
+      <!-- Info Sidebar -->
+      <aside class="contact-aside">
+        <div class="info-card">
+          <h3>Direct Contact</h3>
+          <div class="info-item">
+            <span class="info-label">Phone</span>
+            <a href="tel:+919676413408" class="info-link">+91 9676413408</a>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <a href="mailto:info@reachaimedtech.com" class="info-link">info&#64;reachaimedtech.com</a>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Website</span>
+            <a href="https://www.reachaimedtech.com" target="_blank" rel="noopener" class="info-link">
+              www.reachaimedtech.com
+            </a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Response Time</h3>
+          <p>We aim to respond within <strong>24 business hours</strong>.</p>
+          <p style="margin-top:0.5rem;color:#6b7280;font-size:0.875rem">For urgent matters, please call us directly.</p>
+        </div>
+
+        <div class="info-card info-card--white">
+          <h3>Quick Links</h3>
+          <ul class="quick-links">
+            <li><a href="/products/lite">View Products</a></li>
+            <li><a href="/support">Support &amp; Services</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/resources">Resources</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/919676413408" target="_blank" rel="noopener noreferrer"
+   class="whatsapp-fab" title="Chat on WhatsApp">💬</a>

@@ -1,0 +1,101 @@
+<!-- src/app/features/solutions/corporate/corporate.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>For Corporate Wellness</h1>
+    <p>Enable preventive healthcare and employee wellness initiatives</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Employee Wellness Centers</h2>
+        <p class="text-body">
+          Reach AI enables companies to establish comprehensive employee wellness programs. Deploy
+          AI-powered health screening kiosks to support preventive healthcare and track workforce health trends.
+        </p>
+        <ul class="check-list">
+          @for (b of benefits; track b) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ b }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="placeholder-img">Corporate Wellness Image</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Wellness Program Benefits</h2>
+    <div class="grid-3" style="margin-top:2rem">
+      @for (b of programBenefits; track b.title) {
+        <div class="info-card">
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Wellness Analytics Dashboard</h2>
+    <div class="grid-2">
+      @for (cat of analytics; track cat.title) {
+        <div class="gradient-card">
+          <h3>{{ cat.title }}</h3>
+          <ul>
+            @for (m of cat.metrics; track m) { <li>{{ m }}</li> }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Deployment Options</h2>
+    <div class="grid-3">
+      @for (opt of deploymentOptions; track opt.title) {
+        <div class="info-card">
+          <h3>{{ opt.title }}</h3>
+          <p>{{ opt.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ROI Section -->
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Sample ROI</h2>
+    <div class="roi-grid" style="margin-top:2rem">
+      @for (r of roi; track r.label) {
+        <div class="roi-item">
+          <div class="roi-value">{{ r.value }}</div>
+          <p>{{ r.label }}</p>
+          <small>{{ r.desc }}</small>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Build a Healthier Workforce</h2>
+    <p>Let's create a comprehensive wellness program tailored to your organization's health goals.</p>
+    <a href="/contact" class="btn btn--white">Schedule a Wellness Consultation</a>
+  </div>
+</section>

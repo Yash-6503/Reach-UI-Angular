@@ -1,0 +1,82 @@
+<!-- src/app/features/products/lite/product-lite.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Reach AI Lite</h1>
+    <p>Entry-level telemedicine and diagnostics kiosk for small clinics and rural healthcare centers</p>
+  </div>
+</section>
+
+<!-- Overview -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Perfect for Small Deployments</h2>
+        <p class="text-body">
+          Reach AI Lite provides essential telemedicine and health screening capabilities for small clinics,
+          rural health centers, and NGO programs. Get started quickly with minimal infrastructure requirements.
+        </p>
+        <ul class="check-list">
+          @for (feat of features; track feat) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ feat }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="img-wrap">
+        <img src="assets/images/reachimg2.webp" alt="Reach AI Lite Kiosk" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Specs -->
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Specifications</h2>
+    <div class="grid-3">
+      @for (spec of specs; track spec.label) {
+        <div class="spec-card">
+          <p class="spec-label">{{ spec.label }}</p>
+          <p class="spec-value">{{ spec.value }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Key Benefits</h2>
+    <div class="grid-2">
+      @for (b of benefits; track b.title) {
+        <div class="benefit-card">
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Ready to Get Started?</h2>
+    <div class="cta-btns">
+      <a href="/contact" class="btn btn--white">
+        <span>Request Quote</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <a href="/contact" class="btn btn--outline-white">Schedule Demo</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+<!-- src/app/features/products/pro/product-pro.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Reach AI Pro</h1>
+    <p>Comprehensive telemedicine and diagnostics solution for hospitals and multi-specialty clinics</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Built for Growing Healthcare Organizations</h2>
+        <p class="text-body">
+          Reach AI Pro delivers a full-featured healthcare platform with advanced diagnostics, EMR integration,
+          and multi-location management. Ideal for hospitals, multi-specialty clinics, and CSR programs
+          looking to scale their healthcare delivery.
+        </p>
+        <ul class="check-list">
+          @for (feat of features; track feat) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ feat }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="img-wrap">
+        <img src="https://images.pexels.com/photos/3808517/pexels-photo-3808517.jpeg?auto=compress&cs=tinysrgb&w=600"
+             alt="Reach AI Pro Kiosk" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Specifications</h2>
+    <div class="grid-3">
+      @for (spec of specs; track spec.label) {
+        <div class="spec-card">
+          <p class="spec-label">{{ spec.label }}</p>
+          <p class="spec-value">{{ spec.value }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Key Benefits</h2>
+    <div class="grid-2">
+      @for (b of benefits; track b.title) {
+        <div class="benefit-card">
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Upgrade Your Healthcare Delivery</h2>
+    <div class="cta-btns">
+      <a href="/contact" class="btn btn--white">Request Quote</a>
+      <a href="/contact" class="btn btn--outline-white">Schedule Demo</a>
+    </div>
+  </div>
+</section>

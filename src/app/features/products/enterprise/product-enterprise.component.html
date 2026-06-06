@@ -1,0 +1,75 @@
+<!-- src/app/features/products/enterprise/product-enterprise.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Reach AI Enterprise</h1>
+    <p>Full-featured solution for government initiatives, large NGOs, and enterprise-scale deployments</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div>
+        <h2 class="sec-heading">Enterprise-Grade Healthcare at Scale</h2>
+        <p class="text-body">
+          Reach AI Enterprise is built for organizations that need unlimited scale, custom integrations,
+          and dedicated support. From government health programs to large corporate wellness networks,
+          Enterprise handles it all.
+        </p>
+        <ul class="check-list">
+          @for (feat of features; track feat) {
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              {{ feat }}
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="img-wrap">
+        <img src="https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=600"
+             alt="Reach AI Enterprise Kiosk" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Specifications</h2>
+    <div class="grid-3">
+      @for (spec of specs; track spec.label) {
+        <div class="spec-card">
+          <p class="spec-label">{{ spec.label }}</p>
+          <p class="spec-value">{{ spec.value }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Key Benefits</h2>
+    <div class="grid-2">
+      @for (b of benefits; track b.title) {
+        <div class="benefit-card">
+          <h3>{{ b.title }}</h3>
+          <p>{{ b.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Deploy at National Scale</h2>
+    <div class="cta-btns">
+      <a href="/contact" class="btn btn--white">Request Enterprise Quote</a>
+      <a href="/contact" class="btn btn--outline-white">Talk to an Expert</a>
+    </div>
+  </div>
+</section>

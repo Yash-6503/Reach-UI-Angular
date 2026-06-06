@@ -1,0 +1,111 @@
+<!-- src/app/features/support/support.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Support &amp; Services</h1>
+    <p>Beyond hardware. Complete deployment support and training for successful implementation.</p>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Our Support Services</h2>
+    <div class="grid-2">
+      @for (svc of services; track svc.title) {
+        <div class="svc-card">
+          <div class="svc-icon">
+            @if (svc.icon === 'check') {
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            }
+            @if (svc.icon === 'users') {
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            }
+            @if (svc.icon === 'book') {
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+              </svg>
+            }
+            @if (svc.icon === 'head') {
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+              </svg>
+            }
+          </div>
+          <div>
+            <h3>{{ svc.title }}</h3>
+            <p>{{ svc.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Deployment Timeline -->
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="sec-heading text-center">Deployment Timeline</h2>
+    <div class="timeline">
+      @for (phase of timeline; track phase.title; let i = $index; let last = $last) {
+        <div class="timeline__item">
+          <div class="timeline__left">
+            <div class="timeline__circle">{{ i + 1 }}</div>
+            @if (!last) { <div class="timeline__line"></div> }
+          </div>
+          <div class="timeline__body">
+            <span class="timeline__week">{{ phase.week }}</span>
+            <h4>{{ phase.title }}</h4>
+            <ul>
+              @for (item of phase.items; track item) {
+                <li><span class="dot"></span>{{ item }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Support Tiers -->
+<section class="section">
+  <div class="container">
+    <h2 class="sec-heading">Support Tiers</h2>
+    <div class="grid-3">
+      @for (tier of tiers; track tier.name) {
+        <div class="tier-card" [class.highlighted]="tier.highlight">
+          <h3>{{ tier.name }}</h3>
+          <div class="tier-price">{{ tier.price }}</div>
+          <ul>
+            @for (feat of tier.features; track feat) {
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                {{ feat }}
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Need Help? Get Started Today</h2>
+    <p>Our support team is ready to help you deploy and optimize your Reach AI solution.</p>
+    <div class="cta-btns">
+      <a href="/contact" class="btn btn--white">Contact Support</a>
+      <a href="/contact" class="btn btn--outline-white">Schedule Consultation</a>
+    </div>
+  </div>
+</section>

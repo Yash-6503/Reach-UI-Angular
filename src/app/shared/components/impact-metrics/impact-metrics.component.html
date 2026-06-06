@@ -1,0 +1,20 @@
+<!-- src/app/shared/components/impact-metrics/impact-metrics.component.html -->
+<section class="metrics">
+  <div class="container">
+    <div class="metrics__header">
+      <h2 class="section-title">Our Impact</h2>
+      <p class="section-subtitle">
+        Reach AI is transforming healthcare delivery across India with cutting-edge telemedicine and AI-powered diagnostic kiosks.
+      </p>
+    </div>
+
+    <div class="metrics__grid">
+      @for (stat of stats(); track stat.label) {
+        <div class="metrics__card">
+          <div class="metrics__value">{{ stat.display }}</div>
+          <p class="metrics__label">{{ stat.label }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,105 @@
+<!-- src/app/features/about/about.component.html -->
+
+<!-- Hero Banner -->
+<section class="page-hero">
+  <div class="container">
+    <h1>About Reach AI MedTech</h1>
+    <p>
+      We're reimagining healthcare delivery in India through AI-powered kiosk technology and telemedicine
+      infrastructure. Our mission is to make quality healthcare accessible to everyone, everywhere.
+    </p>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="section">
+  <div class="container">
+    <div class="grid-2 items-center">
+      <div class="about-img-placeholder">
+        <img src="assets/images/reachimg.jpg" alt="Our Vision" class="rounded-img" loading="lazy" />
+      </div>
+      <div>
+        <h2 class="section-heading">Our Mission</h2>
+        <p class="text-body">
+          To expand access to quality healthcare by enabling intelligent, technology-driven health services
+          that connect people, diagnostics, and doctors anywhere.
+        </p>
+        <p class="text-body">
+          We believe that geography, language, or economic status shouldn't determine access to healthcare.
+          Through Reach AI, we're creating a connected digital healthcare ecosystem that brings medical
+          expertise directly to communities.
+        </p>
+        <ul class="highlight-list">
+          @for (item of highlights; track item) {
+            <li>
+              <span class="dot dot--blue"></span>
+              {{ item }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision -->
+<section class="section section--gray">
+  <div class="container">
+    <h2 class="section-heading text-center">Our Vision</h2>
+    <div class="grid-3" style="margin-top:3rem">
+      @for (v of visionCards; track v.title) {
+        <div class="vision-card">
+          <div class="icon-box icon-box--blue">
+            @if (v.icon === 'zap') {
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            }
+            @if (v.icon === 'award') {
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+              </svg>
+            }
+            @if (v.icon === 'users') {
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+            }
+          </div>
+          <h3>{{ v.title }}</h3>
+          <p>{{ v.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-heading text-center">Why Choose Reach AI</h2>
+    <div class="grid-2" style="margin-top:3rem">
+      @for (r of reasons; track r.title; let i = $index) {
+        <div class="reason-item">
+          <div class="reason-num">{{ i + 1 }}</div>
+          <div>
+            <h3>{{ r.title }}</h3>
+            <p>{{ r.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section cta-section--flat">
+  <div class="container text-center">
+    <h2>Let's Transform Healthcare Together</h2>
+    <p>
+      Join healthcare providers and organizations using Reach AI to improve patient outcomes and scale healthcare access.
+    </p>
+    <a routerLink="/contact" class="btn btn--white">Get Started</a>
+  </div>
+</section>

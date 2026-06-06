@@ -1,0 +1,80 @@
+<!-- src/app/layout/header/header.component.html -->
+<header class="header">
+  <nav class="container">
+    <div class="header__inner">
+
+      <!-- Logo -->
+      <a routerLink="/" class="header__logo" (click)="closeMenu()">
+        <img src="assets/images/Logo_-_reachai.png" alt="Reach AI MedTech" class="header__logo-img" />
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="header__desktop-nav">
+
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+          Home
+        </a>
+
+        <!-- Products Dropdown -->
+        <div class="dropdown">
+          <button class="nav-link dropdown__trigger">Products</button>
+          <div class="dropdown__menu">
+            @for (item of products; track item.route) {
+              <a [routerLink]="item.route" class="dropdown__item">{{ item.label }}</a>
+            }
+          </div>
+        </div>
+
+        <!-- Solutions Dropdown -->
+        <div class="dropdown">
+          <button class="nav-link dropdown__trigger">Solutions</button>
+          <div class="dropdown__menu">
+            @for (item of solutions; track item.route) {
+              <a [routerLink]="item.route" class="dropdown__item">{{ item.label }}</a>
+            }
+          </div>
+        </div>
+
+        <a routerLink="/technology" routerLinkActive="active" class="nav-link">Technology</a>
+        <a routerLink="/support"    routerLinkActive="active" class="nav-link">Support</a>
+        <a routerLink="/resources"  routerLinkActive="active" class="nav-link">Resources</a>
+        <a routerLink="/about"      routerLinkActive="active" class="nav-link">About</a>
+
+        <a routerLink="/contact" class="btn btn--primary btn--sm">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button class="header__hamburger" (click)="toggleMenu()" aria-label="Toggle menu">
+        @if (isOpen()) {
+          <!-- X icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        } @else {
+          <!-- Menu icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        }
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isOpen()) {
+      <div class="header__mobile-menu" [@mobileMenu]>
+        @for (link of mobileLinks; track link.route) {
+          <a
+            [routerLink]="link.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: link.route === '/'}"
+            class="mobile-link"
+            (click)="closeMenu()"
+          >{{ link.label }}</a>
+        }
+        <a routerLink="/contact" class="btn btn--primary btn--full" style="margin: 1rem" (click)="closeMenu()">
+          Contact
+        </a>
+      </div>
+    }
+  </nav>
+</header>

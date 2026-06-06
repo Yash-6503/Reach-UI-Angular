@@ -1,0 +1,128 @@
+// src/app/features/technology/technology.component.scss
+@use '../../../styles/styles' as *;
+
+.page-hero {
+  background: linear-gradient(135deg, $blue-50, $teal-50);
+  padding: 4rem 0;
+  .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+  h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: $gray-900; margin-bottom: 1rem; }
+  p  { font-size: 1.125rem; color: $gray-600; max-width: 36rem; line-height: 1.75; }
+}
+
+.section {
+  padding: 4rem 0;
+  &--gray { background: $gray-50; }
+  .container { max-width: 80rem; margin: 0 auto; padding: 0 1rem;
+    @media (min-width: 640px)  { padding: 0 1.5rem; }
+    @media (min-width: 1024px) { padding: 0 2rem; }
+  }
+}
+
+.sec-heading { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; color: $gray-900; margin-bottom: 2rem; }
+
+.arch-box {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.arch-pre {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8125rem;
+  color: $gray-700;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @media (min-width: 768px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @media (min-width: 768px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.tech-card {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+
+  h3 { font-weight: 700; color: $gray-900; margin-bottom: 1rem; }
+
+  ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  li { font-size: 0.875rem; color: $gray-700; }
+}
+
+.cap-card {
+  background: linear-gradient(135deg, $blue-50, $teal-50);
+  border: 1px solid $blue-100;
+  border-radius: 0.75rem;
+  padding: 2rem;
+
+  h3 { font-weight: 700; color: $gray-900; margin-bottom: 0.75rem; font-size: 1rem; }
+  p  { font-size: 0.875rem; color: $gray-700; line-height: 1.6; }
+}
+
+.sec-card {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
+  padding: 2rem;
+
+  h3 { font-weight: 700; color: $gray-900; margin-bottom: 1rem; }
+
+  ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: $gray-700;
+  }
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: $blue-600;
+  flex-shrink: 0;
+}
+
+.perf-card {
+  background: $white;
+  border: 1px solid $gray-200;
+  border-radius: 0.75rem;
+  padding: 2rem;
+
+  .perf-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $blue-600;
+    margin-bottom: 0.5rem;
+  }
+
+  p { color: $gray-700; font-size: 0.9375rem; }
+}

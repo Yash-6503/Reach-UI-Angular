@@ -1,0 +1,50 @@
+<!-- src/app/shared/components/product-showcase/product-showcase.component.html -->
+<section class="showcase">
+  <div class="container">
+    <div class="showcase__header">
+      <h2 class="section-title">Choose the Right Reach AI Kiosk for Your Deployment</h2>
+      <p class="section-subtitle">
+        Scalable solutions designed for clinics, hospitals, NGOs, and corporate wellness programs
+      </p>
+    </div>
+
+    <div class="showcase__grid">
+      @for (product of products; track product.name) {
+        <div class="product-card">
+          <div class="product-card__img-wrap">
+            <img [src]="product.image" [alt]="product.name" class="product-card__img" loading="lazy" />
+          </div>
+          <div class="product-card__body">
+            <h3 class="product-card__name">{{ product.name }}</h3>
+            <p class="product-card__desc">{{ product.description }}</p>
+
+            <div class="product-card__section">
+              <h4 class="product-card__section-title">Ideal For:</h4>
+              <div class="product-card__badges">
+                @for (tag of product.idealFor; track tag) {
+                  <span class="badge">{{ tag }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="product-card__section">
+              <h4 class="product-card__section-title">Key Features:</h4>
+              <ul class="product-card__features">
+                @for (feat of product.features; track feat) {
+                  <li>{{ feat }}</li>
+                }
+              </ul>
+            </div>
+
+            <a [routerLink]="product.route" class="product-card__link">
+              <span>View Details</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

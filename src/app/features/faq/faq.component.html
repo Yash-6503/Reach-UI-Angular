@@ -1,0 +1,47 @@
+<!-- src/app/features/faq/faq.component.html -->
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to common questions about Reach AI, deployment, and support.</p>
+  </div>
+</section>
+
+@for (cat of categories; track cat) {
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="cat-title">{{ cat }}</h2>
+      <div class="accordion">
+        @for (item of faqsByCategory(cat); track item.question) {
+          <div class="accordion__item">
+            <button
+              class="accordion__trigger"
+              [class.open]="isOpen(globalIndex(item))"
+              (click)="toggle(globalIndex(item))"
+            >
+              <span>{{ item.question }}</span>
+              <svg class="accordion__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                @if (isOpen(globalIndex(item))) {
+                  <polyline points="18 15 12 9 6 15"/>
+                } @else {
+                  <polyline points="6 9 12 15 18 9"/>
+                }
+              </svg>
+            </button>
+            @if (isOpen(globalIndex(item))) {
+              <div class="accordion__body">{{ item.answer }}</div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Didn't find what you're looking for?</h2>
+    <p>Contact our team for personalized assistance and answers to specific questions.</p>
+    <a routerLink="/contact" class="btn btn--white">Contact Us</a>
+  </div>
+</section>
