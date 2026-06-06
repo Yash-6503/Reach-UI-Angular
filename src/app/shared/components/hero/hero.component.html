@@ -1,38 +1,46 @@
 <!-- src/app/shared/components/hero/hero.component.html -->
+
 <div class="hero">
+
+  <!-- Background Effects -->
+  <div class="hero__overlay"></div>
+  <div class="hero__blob hero__blob--top"></div>
+  <div class="hero__blob hero__blob--bottom"></div>
+
   <div class="container">
     <div class="hero__grid">
 
-      <!-- Left Content -->
+      <!-- Content -->
       <div class="hero__text" @heroContent>
-        <h1>Deploy Your Own AI-Powered Healthcare Kiosk Network</h1>
-        <p>
+        <h1 style="color: #F8FAFC;">Deploy Your Own AI-Powered Healthcare Kiosk Network</h1>
+
+        <p style="color: #CBD5E1;">
           Launch telemedicine-enabled healthcare services using Reach AI Kiosks.
-          Designed for clinics, hospitals, NGOs, CSR initiatives, and corporate wellness programs.
+          Designed for clinics, hospitals, NGOs, CSR initiatives, and corporate
+          wellness programs.
         </p>
+
         <div class="hero__actions">
           <a routerLink="/contact" class="btn btn--primary">
             <span>Request Demo</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <a routerLink="/contact" class="btn btn--outline">Get Pricing</a>
-        </div>
-      </div>
 
-      <!-- Right Image -->
-      <div class="hero__image-wrap" @heroImage>
-        <div class="hero__image-inner">
-          <img
-            src="assets/images/reachimg.jpg"
-            alt="Reach AI Healthcare Kiosk with telemedicine interface"
-            class="hero__image"
-            loading="eager"
-          />
+          <a routerLink="/contact" class="btn btn--outline">
+            Get Pricing
+          </a>
         </div>
-        <div class="hero__blob hero__blob--top"></div>
-        <div class="hero__blob hero__blob--bottom"></div>
       </div>
 
     </div>

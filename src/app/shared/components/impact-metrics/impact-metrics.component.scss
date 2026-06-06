@@ -1,70 +1,281 @@
 // src/app/shared/components/impact-metrics/impact-metrics.component.scss
 @use '../../../../styles/styles' as *;
 
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(90px);
+
+    filter:
+      blur(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter:
+      blur(0);
+  }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(60px)
+      scale(.92);
+
+    filter:
+      blur(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:
+      blur(0);
+  }
+}
+
+@keyframes floatCard {
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-6px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
 .metrics {
-  padding: 5rem 0;
-  background: $white;
+  padding: 6rem 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      $white,
+      $blue-50
+    );
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  filter: blur(18px);
+
+  transform:
+    translateY(80px);
 
   .container {
     max-width: 80rem;
-    margin: 0 auto;
+
+    margin: auto;
+
     padding: 0 1rem;
-    @media (min-width: 640px)  { padding: 0 1.5rem; }
-    @media (min-width: 1024px) { padding: 0 2rem; }
+
+    @media (min-width:640px) {
+      padding: 0 1.5rem;
+    }
+
+    @media (min-width:1024px) {
+      padding: 0 2rem;
+    }
+  }
+
+  &.visible {
+    animation:
+      sectionReveal
+      1s
+      ease
+      forwards;
   }
 
   &__header {
     text-align: center;
+
     margin-bottom: 4rem;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+      repeat(1, 1fr);
+
     gap: 1.5rem;
 
-    @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+    @media (min-width:425px) {
+      grid-template-columns:
+        repeat(2, 1fr);
+    }
+
+    @media (min-width:1024px) {
+      grid-template-columns:
+        repeat(4, 1fr);
+    }
   }
+
+  /* ======================
+     CARD
+  ====================== */
 
   &__card {
-    background: linear-gradient(135deg, $blue-50, $teal-50);
-    border: 1px solid $blue-100;
-    border-radius: 0.75rem;
-    padding: 2rem;
-    text-align: center;
-    transition: transform 0.3s ease;
+    position: relative;
 
-    &:hover { transform: translateY(-4px); }
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255,255,255,.95),
+        $blue-50
+      );
+
+    border:
+      1px solid $blue-100;
+
+    border-radius: 1rem;
+
+    padding: 2rem;
+
+    text-align: center;
+
+    box-shadow:
+      0 12px 40px rgba(0,0,0,.05);
+
+    opacity: 0;
+
+    filter: blur(12px);
+
+    transform:
+      translateY(60px);
+
+    transition:
+      .35s ease;
+
+    &:hover {
+      animation:
+        floatCard
+        2s
+        infinite;
+
+      box-shadow:
+        0 20px 50px rgba(37,99,235,.12);
+    }
   }
 
+  /* stagger animation */
+
+  &.visible &__card {
+    animation:
+      cardReveal
+      .9s
+      ease
+      forwards;
+  }
+
+  &.visible &__card:nth-child(1) {
+    animation-delay: .15s;
+  }
+
+  &.visible &__card:nth-child(2) {
+    animation-delay: .35s;
+  }
+
+  &.visible &__card:nth-child(3) {
+    animation-delay: .55s;
+  }
+
+  &.visible &__card:nth-child(4) {
+    animation-delay: .75s;
+  }
+
+  /* ======================
+     VALUE
+  ====================== */
+
   &__value {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: $blue-600;
-    margin-bottom: 0.5rem;
+    font-size:
+      clamp(2rem, 4vw, 3rem);
+
+    font-weight: 800;
+
+    margin-bottom: .75rem;
+
+    background:
+      linear-gradient(
+        135deg,
+        $blue-600,
+        $teal-500
+      );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
     font-feature-settings: 'tnum';
   }
 
   &__label {
-    color: $gray-700;
+    color:
+      $gray-700;
+
     font-weight: 600;
-    font-size: 0.9375rem;
-    line-height: 1.4;
+
+    font-size: .95rem;
+
+    line-height: 1.5;
   }
 }
 
-// Shared section classes
+/* =====================================================
+   SHARED TITLES
+===================================================== */
+
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size:
+    clamp(2rem, 4vw, 3rem);
+
   font-weight: 700;
-  color: $gray-900;
+
+  color:
+    $gray-900;
+
   margin-bottom: 1rem;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: $gray-600;
+
+  color:
+    $gray-600;
+
   max-width: 48rem;
-  margin: 0 auto;
-  line-height: 1.75;
+
+  margin: auto;
+
+  line-height: 1.8;
 }

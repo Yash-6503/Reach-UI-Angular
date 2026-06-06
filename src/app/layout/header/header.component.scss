@@ -1,171 +1,340 @@
 // src/app/layout/header/header.component.scss
 @use '../../../styles/styles' as *;
 
+/* ================= HEADER ================= */
+
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: $white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  left: 0;
+
+  width: 100%;
+
+  z-index: 9999;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+
+  transition: all 0.3s ease;
 
   .container {
     max-width: 80rem;
+
     margin: 0 auto;
+
     padding: 0 1rem;
-    @media (min-width: 640px)  { padding: 0 1.5rem; }
-    @media (min-width: 1024px) { padding: 0 2rem; }
+
+    @media (min-width: 640px) {
+      padding: 0 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0 2rem;
+    }
   }
 
   &__inner {
+    height: 4.5rem;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
-    height: 4rem;
   }
+
+  /* LOGO */
 
   &__logo {
     display: flex;
+
     align-items: center;
-    gap: 0.5rem;
+
     text-decoration: none;
   }
 
   &__logo-img {
-    height: 2.5rem;
+    height: 2.8rem;
+
     width: auto;
+
     display: block;
   }
 
+  /* DESKTOP NAV */
+
   &__desktop-nav {
     display: none;
+
     align-items: center;
+
     gap: 2rem;
 
-    @media (min-width: 1024px) { display: flex; }
+    @media (min-width: 1024px) {
+      display: flex;
+    }
   }
+
+  /* MOBILE */
 
   &__hamburger {
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    color: $gray-700;
-    padding: 0.25rem;
-    background: none;
+
+    background: transparent;
+
     border: none;
+
+    color: $gray-700;
+
     cursor: pointer;
 
-    @media (min-width: 1024px) { display: none; }
+    padding: .5rem;
 
-    &:hover { color: $blue-600; }
+    @media (min-width: 1024px) {
+      display: none;
+    }
+
+    &:hover {
+      color: $blue-600;
+    }
   }
 
   &__mobile-menu {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 0;
+    position: absolute;
+
+    top: 100%;
+
+    left: 0;
+
+    width: 100%;
+
+    background: $white;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
     border-top: 1px solid $gray-200;
 
-    @media (min-width: 1024px) { display: none; }
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 1rem 0;
+
+    z-index: 999;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
   }
 }
 
-// ── Nav Link ──────────────────────────────────────────────────
-.nav-link {
-  color: $gray-700;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  text-decoration: none;
-  transition: color 0.15s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  padding: 0;
+/* ================= NAV LINKS ================= */
 
-  &:hover, &.active { color: $blue-600; }
-  &.active           { font-weight: 600; }
+.nav-link {
+  position: relative;
+
+  color: $gray-700;
+
+  font-weight: 500;
+
+  font-size: .95rem;
+
+  text-decoration: none;
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  padding: .5rem 0;
+
+  transition: .2s;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -6px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: $blue-600;
+
+    transition: width .2s;
+  }
+
+  &:hover,
+  &.active {
+    color: $blue-600;
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+
+  &.active {
+    font-weight: 600;
+  }
 }
+
+/* ================= MOBILE LINKS ================= */
 
 .mobile-link {
-  padding: 0.75rem 1rem;
-  color: $gray-700;
-  font-size: 0.9375rem;
-  text-decoration: none;
-  transition: color 0.15s ease;
+  padding: .9rem 1rem;
 
-  &:hover, &.active { color: $blue-600; }
-  &.active           { font-weight: 600; }
+  color: $gray-700;
+
+  text-decoration: none;
+
+  transition: .2s;
+
+  &:hover,
+  &.active {
+    color: $blue-600;
+
+    background: $blue-50;
+  }
+
+  &.active {
+    font-weight: 600;
+  }
 }
 
-// ── Dropdown ──────────────────────────────────────────────────
+/* ================= DROPDOWN ================= */
+
 .dropdown {
   position: relative;
 
   &__trigger {
-    color: $gray-700;
-    font-weight: 500;
-    font-size: 0.9375rem;
     background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    padding: 0;
-    transition: color 0.15s ease;
 
-    &:hover { color: $blue-600; }
+    border: none;
+
+    color: $gray-700;
+
+    cursor: pointer;
+
+    font-size: .95rem;
+
+    font-weight: 500;
+
+    transition: .2s;
+
+    &:hover {
+      color: $blue-600;
+    }
   }
 
   &__menu {
     position: absolute;
-    top: calc(100% + 0.5rem);
+
+    top: calc(100% + .75rem);
+
     left: 0;
-    width: 12rem;
+
+    width: 13rem;
+
     background: $white;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+    border-radius: .75rem;
+
+    box-shadow: 0 12px 32px rgba(0,0,0,.08);
+
     opacity: 0;
+
     visibility: hidden;
-    transform: translateY(-4px);
-    transition: all 0.2s ease;
+
+    transform: translateY(-8px);
+
+    transition: .25s;
+
     overflow: hidden;
-    z-index: 100;
+
+    z-index: 999;
   }
 
   &:hover &__menu {
     opacity: 1;
+
     visibility: visible;
+
     transform: translateY(0);
   }
 
   &__item {
     display: block;
-    padding: 0.75rem 1rem;
-    color: $gray-700;
-    font-size: 0.875rem;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
 
-    &:hover { background-color: $blue-50; color: $blue-600; }
-    &:first-child { border-radius: 0.5rem 0.5rem 0 0; }
-    &:last-child  { border-radius: 0 0 0.5rem 0.5rem; }
+    padding: .85rem 1rem;
+
+    color: $gray-700;
+
+    text-decoration: none;
+
+    transition: .2s;
+
+    &:hover {
+      background: $blue-50;
+
+      color: $blue-600;
+    }
   }
 }
 
-// ── Buttons (local overrides use global .btn) ─────────────────
+/* ================= BUTTON ================= */
+
 .btn {
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  font-size: 0.9375rem;
+
+  border-radius: .6rem;
+
   text-decoration: none;
-  transition: all 0.2s ease;
-  font-family: inherit;
+
   cursor: pointer;
 
-  &--primary { background: $blue-600; color: $white; border: none; &:hover { background: $blue-700; } }
-  &--sm      { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
-  &--full    { width: calc(100% - 2rem); margin: 0 1rem; }
+  transition: .25s;
+
+  &--primary {
+    background: $blue-600;
+
+    color: $white;
+
+    border: none;
+
+    &:hover {
+      background: $blue-700;
+    }
+  }
+
+  &--sm {
+    padding: .7rem 1.4rem;
+
+    font-size: .875rem;
+  }
+
+  &--full {
+    width: calc(100% - 2rem);
+
+    margin: 1rem;
+  }
 }

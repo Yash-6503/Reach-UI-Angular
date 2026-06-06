@@ -14,8 +14,8 @@ import { CallToActionComponent } from '../../shared/components/call-to-action/ca
   standalone: true,
   imports: [
     HeroComponent,
-    TrustCredentialsComponent,
     ImpactMetricsComponent,
+    TrustCredentialsComponent,
     ProductShowcaseComponent,
     WhoWeServeComponent,
     PlatformCapabilitiesComponent,
@@ -24,13 +24,13 @@ import { CallToActionComponent } from '../../shared/components/call-to-action/ca
   ],
   template: `
     <app-hero />
-    <app-trust-credentials />
     <app-impact-metrics />
+    <app-trust-credentials />
     <app-product-showcase />
     <app-who-we-serve />
     <app-platform-capabilities />
-    <app-testimonial-slider />
     <app-call-to-action />
+    <app-testimonial-slider />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
