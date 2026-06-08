@@ -1,48 +1,133 @@
 <!-- src/app/shared/components/hero/hero.component.html -->
 
-<div class="hero">
+<section
+  class="hero"
+  (mouseenter)="pauseAutoplay()"
+  (mouseleave)="resumeAutoplay()"
+  [attr.aria-label]="'Hero slider, slide ' + (current() + 1) + ' of ' + slides.length"
+>
 
-  <!-- Background Effects -->
-  <div class="hero__overlay"></div>
-  <div class="hero__blob hero__blob--top"></div>
-  <div class="hero__blob hero__blob--bottom"></div>
+  <!-- ── Slide Track ────────────────────────────── -->
+  <div class="hero__track">
 
-  <div class="container">
-    <div class="hero__grid">
+    @for (slide of slides; track slide.id; let i = $index) {
+      <div
+        class="hero__slide"
+        [class.is-active]="i === current()"
+        [class.is-prev]="i === (current() - 1 + slides.length) % slides.length"
+        [attr.aria-hidden]="i !== current()"
+      >
 
-      <!-- Content -->
-      <div class="hero__text" @heroContent>
-        <h1 style="color: #F8FAFC;">Deploy Your Own AI-Powered Healthcare Kiosk Network</h1>
+        <!-- Full-bleed Background Image -->
+        <div
+          class="hero__slide-bg"
+          [style.background-image]="'url(' + slide.image + ')'"
+        ></div>
 
-        <p style="color: #CBD5E1;">
-          Launch telemedicine-enabled healthcare services using Reach AI Kiosks.
-          Designed for clinics, hospitals, NGOs, CSR initiatives, and corporate
-          wellness programs.
-        </p>
+        <!-- Dark gradient overlay so text is readable -->
+        <div class="hero__slide-overlay"></div>
 
-        <div class="hero__actions">
-          <a routerLink="/contact" class="btn btn--primary">
-            <span>Request Demo</span>
+        <!-- Ambient animated blobs on top of overlay -->
+        <div class="hero__blob hero__blob--tl"></div>
+        <div class="hero__blob hero__blob--br"></div>
 
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </a>
+        <!-- ── Content ──────────────────────────── -->
+        <div class="hero__container">
+          <div
+            class="hero__content"
+            [@contentReveal]="animTrigger()"
+          >
+            <span class="hero__badge">{{ slide.badge }}</span>
 
-          <a routerLink="/contact" class="btn btn--outline">
-            Get Pricing
-          </a>
+            <h1 class="hero__headline">{{ slide.headline }}</h1>
+
+            <p class="hero__sub">{{ slide.subheadline }}</p>
+
+            <div class="hero__actions">
+              <a
+                [routerLink]="slide.primaryCtaLink"
+                class="btn btn--primary"
+                [style.--accent]="slide.accentColor"
+              >
+                <span>{{ slide.primaryCta }}</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </a>
+
+              <a
+                [routerLink]="slide.secondaryCtaLink"
+                class="btn btn--ghost"
+              >
+                {{ slide.secondaryCta }}
+              </a>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="hero__stats">
+              @for (stat of slide.stats; track stat.label) {
+                <div class="hero__stat">
+                  <span class="hero__stat-value">{{ stat.value }}</span>
+                  <span class="hero__stat-label">{{ stat.label }}</span>
+                </div>
+              }
+            </div>
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div>
+    }
+
   </div>
-</div>
+
+  <!-- ── Navigation ────────────────────────────── -->
+  <div class="hero__nav" aria-label="Slider navigation">
+
+    <button
+      class="hero__nav-btn"
+      (click)="goPrev()"
+      aria-label="Previous slide"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+
+    <div class="hero__dots" role="tablist" aria-label="Slides">
+      @for (i of range(slides.length); track i) {
+        <button
+          class="hero__dot"
+          [class.is-active]="i === current()"
+          (click)="goTo(i)"
+          role="tab"
+          [attr.aria-selected]="i === current()"
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+        >
+          <span class="hero__dot-fill"></span>
+        </button>
+      }
+    </div>
+
+    <button
+      class="hero__nav-btn"
+      (click)="goNext()"
+      aria-label="Next slide"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- ── Progress Bar ───────────────────────────── -->
+  <div class="hero__progress" aria-hidden="true">
+    <div
+      class="hero__progress-bar"
+      [class.is-running]="!isPaused()"
+      [attr.data-slide]="current()"
+    ></div>
+  </div>
+
+</section>

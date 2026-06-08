@@ -19,8 +19,8 @@ import { CallToActionComponent } from '../../shared/components/call-to-action/ca
     ProductShowcaseComponent,
     WhoWeServeComponent,
     PlatformCapabilitiesComponent,
-    TestimonialSliderComponent,
     CallToActionComponent,
+    TestimonialSliderComponent,
   ],
   template: `
     <app-hero />
