@@ -32,9 +32,9 @@ export class HeaderComponent {
   navItems = this.nav.navItems;
 
   products = [
-    { label: 'Reach AI Lite',       route: '/products/lite' },
-    { label: 'Reach AI Pro',        route: '/products/pro' },
-    { label: 'Reach AI Enterprise', route: '/products/enterprise' },
+    { label: 'Reach AI Vanity Model',       route: '/products/lite' },
+    { label: 'Reach AI Linear Activate Model',        route: '/products/pro' },
+    // { label: 'Reach AI Enterprise', route: '/products/enterprise' },
   ];
 
   solutions = [
@@ -46,9 +46,9 @@ export class HeaderComponent {
 
   mobileLinks = [
     { label: 'Home',                route: '/' },
-    { label: 'Reach AI Lite',       route: '/products/lite' },
-    { label: 'Reach AI Pro',        route: '/products/pro' },
-    { label: 'Reach AI Enterprise', route: '/products/enterprise' },
+    { label: 'Reach AI Vanity Model',       route: '/products/lite' },
+    { label: 'Reach AI Linear Activate Model',        route: '/products/pro' },
+    // { label: 'Reach AI Enterprise', route: '/products/enterprise' },
     { label: 'Doctors & Clinics',   route: '/solutions/doctors' },
     { label: 'NGOs & Foundations',  route: '/solutions/ngo' },
     { label: 'CSR Projects',        route: '/solutions/csr' },

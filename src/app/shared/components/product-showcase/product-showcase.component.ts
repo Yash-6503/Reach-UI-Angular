@@ -31,7 +31,7 @@ implements AfterViewInit, OnDestroy {
   products = [
 
     {
-      name: 'Reach AI Lite',
+      name: 'Reach AI Vanity Model',
 
       description:
         'Entry-level solution for small clinics and rural healthcare centers',
@@ -57,7 +57,7 @@ implements AfterViewInit, OnDestroy {
     },
 
     {
-      name: 'Reach AI Pro',
+      name: 'Reach AI Linear Activate Model',
 
       description:
         'Comprehensive solution for hospitals and multi-specialty clinics',
