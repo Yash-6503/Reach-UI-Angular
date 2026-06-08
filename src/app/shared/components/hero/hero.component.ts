@@ -127,7 +127,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       primaryCtaLink: '/contact',
       secondaryCta: 'Request Proposal',
       secondaryCtaLink: '/contact',
-      image: 'assets/images/doctor.jpg',
+      image: 'assets/images/image.png',
       accentColor: '#7C3AED',
       stats: [
         { value: '35%', label: 'Absenteeism Drop' },

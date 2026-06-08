@@ -941,7 +941,7 @@ export class TrustCredentialsComponent implements AfterViewInit, OnDestroy {
     { id: 'cdsco', name: 'CDSCO Compliant',  description: 'Central Drugs Standard Control compliance',   region: 'India',          img: 'assets/images/cdsco.jpg', icon: '' },
     { id: 'fda',   name: 'FDA Components',   description: 'US Food & Drug Administration standards',     region: 'United States',  img: 'assets/images/fda.jpg',   icon: '' },
     { id: 'nabl',  name: 'NABL Accredited',  description: 'ISO / IEC 17025 laboratory accreditation',    region: 'India',          img: 'assets/images/nabl.jpg',  icon: '' },
-    { id: 'abdm',  name: 'ABDM Compatible',  description: 'Ayushman Bharat Digital Mission integration', region: 'India',          img: 'assets/images/abdm.png',   icon: '🔗' },
+    { id: 'abdm',  name: 'ABDM Compatible',  description: 'Ayushman Bharat Digital Mission integration', region: 'India',          img: 'assets/images/abdm.png',  icon: '🔗' },
   ];
 
   // ── Stats Data ────────────────────────────────────────────────────────────────
