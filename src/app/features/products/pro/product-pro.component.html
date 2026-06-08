@@ -1,16 +1,46 @@
 <!-- src/app/features/products/pro/product-pro.component.html -->
 
+<!-- ── Hero ─────────────────────────────────────────── -->
 <section class="page-hero">
+  <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
   <div class="container">
-    <h1>Reach AI Linear Activate Model</h1>
-    <p>Comprehensive telemedicine and diagnostics solution for hospitals and multi-specialty clinics</p>
+    <div class="hero-content" [class.is-visible]="heroVisible()">
+      <span class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Pro-Grade Kiosk
+      </span>
+      <h1>Reach AI Linear Activate Model</h1>
+      <p>Comprehensive telemedicine and diagnostics solution for hospitals and multi-specialty clinics</p>
+
+      <div class="hero-tags">
+        <span class="hero-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          12+ Diagnostics
+        </span>
+        <span class="hero-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Multi-Location
+        </span>
+        <span class="hero-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          EMR Ready
+        </span>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ── Overview ──────────────────────────────────────── -->
+<section class="section overview-section">
+  <div class="section-veil" [class.veil-gone]="overviewVisible()" aria-hidden="true"></div>
   <div class="container">
     <div class="grid-2 items-center">
-      <div>
+
+      <div class="reveal-left" [class.revealed]="overviewVisible()">
+        <span class="sec-eyebrow">Overview</span>
         <h2 class="sec-heading">Built for Growing Healthcare Organizations</h2>
         <p class="text-body">
           Reach AI Pro delivers a full-featured healthcare platform with advanced diagnostics, EMR integration,
@@ -18,58 +48,96 @@
           looking to scale their healthcare delivery.
         </p>
         <ul class="check-list">
-          @for (feat of features; track feat) {
-            <li>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-              </svg>
+          @for (feat of features; track feat; let i = $index) {
+            <li [style.transition-delay]="(i * 70) + 'ms'">
+              <span class="check-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
               {{ feat }}
             </li>
           }
         </ul>
       </div>
-      <div class="img-wrap">
-        <img src="assets/images/pro.png"
-             alt="Reach AI Pro Kiosk" loading="lazy" />
+
+      <div class="img-wrap reveal-right" [class.revealed]="overviewVisible()">
+        <div class="img-glow" aria-hidden="true"></div>
+        <img src="assets/images/pro.png" alt="Reach AI Pro Kiosk" loading="lazy" />
+        <div class="img-badge">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          3–4 Week Deploy
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<section class="section section--gray">
+<!-- ── Specs ─────────────────────────────────────────── -->
+<section class="section section--gray specs-section">
+  <div class="section-veil veil--gray" [class.veil-gone]="specsVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="sec-heading text-center">Specifications</h2>
+    <div class="section-header reveal-up" [class.revealed]="specsVisible()">
+      <span class="sec-eyebrow">Technical</span>
+      <h2 class="sec-heading text-center">Specifications</h2>
+    </div>
     <div class="grid-3">
-      @for (spec of specs; track spec.label) {
-        <div class="spec-card">
+      @for (spec of specs; track spec.label; let i = $index) {
+        <div class="spec-card reveal-up" [class.revealed]="specsVisible()" [style.transition-delay]="(80 + i * 70) + 'ms'">
           <p class="spec-label">{{ spec.label }}</p>
           <p class="spec-value">{{ spec.value }}</p>
+          <div class="spec-bar"></div>
         </div>
       }
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- ── Benefits ──────────────────────────────────────── -->
+<section class="section benefits-section">
+  <div class="section-veil" [class.veil-gone]="benefitsVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="sec-heading">Key Benefits</h2>
+    <div class="section-header reveal-up" [class.revealed]="benefitsVisible()">
+      <span class="sec-eyebrow">Why Choose</span>
+      <h2 class="sec-heading">Key Benefits</h2>
+    </div>
     <div class="grid-2">
-      @for (b of benefits; track b.title) {
-        <div class="benefit-card">
-          <h3>{{ b.title }}</h3>
-          <p>{{ b.desc }}</p>
+      @for (b of benefits; track b.title; let i = $index) {
+        <div class="benefit-card reveal-up" [class.revealed]="benefitsVisible()" [style.transition-delay]="(80 + i * 80) + 'ms'">
+          <div class="benefit-num">0{{ i + 1 }}</div>
+          <div class="benefit-body">
+            <h3>{{ b.title }}</h3>
+            <p>{{ b.desc }}</p>
+          </div>
         </div>
       }
     </div>
   </div>
 </section>
 
-<section class="cta-section">
+<!-- ── CTA ──────────────────────────────────────────── -->
+<section class="cta-section" [class.is-visible]="ctaVisible()">
+  <div class="cta-blob cta-blob--1" aria-hidden="true"></div>
+  <div class="cta-blob cta-blob--2" aria-hidden="true"></div>
+  <div class="section-veil veil--cta" [class.veil-gone]="ctaVisible()" aria-hidden="true"></div>
+
   <div class="container text-center">
-    <h2>Upgrade Your Healthcare Delivery</h2>
-    <div class="cta-btns">
-      <a href="/contact" class="btn btn--white">Request Quote</a>
-      <a href="/contact" class="btn btn--outline-white">Schedule Demo</a>
+    <div class="cta-content">
+      <span class="sec-eyebrow eyebrow--light">Scale Up</span>
+      <h2>Upgrade Your Healthcare Delivery</h2>
+      <p>Deploy a full-featured pro kiosk network for your hospital or clinic group.</p>
+      <div class="cta-btns">
+        <a href="/contact" class="btn btn--white">
+          <span>Request Quote</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="/contact" class="btn btn--outline-white">Schedule Demo</a>
+      </div>
     </div>
   </div>
 </section>

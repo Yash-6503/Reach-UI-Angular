@@ -2,21 +2,32 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  signal,
+  OnInit,
   AfterViewInit,
   OnDestroy,
-  NgZone,
+  ElementRef,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-lite',
   standalone: true,
+  imports: [RouterLink, CommonModule],
   templateUrl: './product-lite.component.html',
   styleUrls: ['./product-lite.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductLiteComponent implements AfterViewInit, OnDestroy {
+export class ProductLiteComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  private observer: IntersectionObserver | null = null;
+  heroVisible    = signal(false);
+  overviewVisible = signal(false);
+  specsVisible   = signal(false);
+  benefitsVisible = signal(false);
+  ctaVisible     = signal(false);
+
+  private observers: IntersectionObserver[] = [];
 
   features = [
     'Telemedicine video consultation',
@@ -45,32 +56,31 @@ export class ProductLiteComponent implements AfterViewInit, OnDestroy {
     { title: 'Proven Results',         desc: 'Trusted by 50+ small clinics and health centers' },
   ];
 
-  constructor(private zone: NgZone) {}
+  constructor(private el: ElementRef) {}
+
+  ngOnInit(): void {
+    requestAnimationFrame(() => this.heroVisible.set(true));
+  }
 
   ngAfterViewInit(): void {
-    // Run outside Angular zone for performance
-    this.zone.runOutsideAngular(() => {
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              // Once visible, stop observing this section
-              this.observer?.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-
-      // Observe every section marked as reveal-section
-      document
-        .querySelectorAll('.reveal-section')
-        .forEach((el) => this.observer!.observe(el));
-    });
+    this.observe('.overview-section',  () => this.overviewVisible.set(true));
+    this.observe('.specs-section',     () => this.specsVisible.set(true));
+    this.observe('.benefits-section',  () => this.benefitsVisible.set(true));
+    this.observe('.cta-section',       () => this.ctaVisible.set(true));
   }
 
   ngOnDestroy(): void {
-    this.observer?.disconnect();
+    this.observers.forEach(o => o.disconnect());
+  }
+
+  private observe(selector: string, cb: () => void): void {
+    const el = this.el.nativeElement.querySelector(selector);
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { cb(); obs.disconnect(); } },
+      { threshold: 0.10 }
+    );
+    obs.observe(el);
+    this.observers.push(obs);
   }
 }
