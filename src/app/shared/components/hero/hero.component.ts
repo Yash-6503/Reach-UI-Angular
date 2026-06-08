@@ -91,7 +91,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       primaryCtaLink: '/contact',
       secondaryCta: 'Get Pricing',
       secondaryCtaLink: '/pricing',
-      image: 'assets/images/reachimg2.webp',
+      image: 'assets/images/docs.jpg',
       accentColor: '#0891B2',
       stats: [
         { value: '3x', label: 'Patient Reach' },
@@ -127,7 +127,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       primaryCtaLink: '/contact',
       secondaryCta: 'Request Proposal',
       secondaryCtaLink: '/contact',
-      image: 'assets/images/lite.png',
+      image: 'assets/images/doctor.jpg',
       accentColor: '#7C3AED',
       stats: [
         { value: '35%', label: 'Absenteeism Drop' },
@@ -145,7 +145,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       primaryCtaLink: '/technology',
       secondaryCta: 'Watch Demo',
       secondaryCtaLink: '/demo',
-      image: 'assets/images/logo.png',
+      image: 'assets/images/aimed.jpg',
       accentColor: '#DB2777',
       stats: [
         { value: '50+', label: 'AI Parameters' },
