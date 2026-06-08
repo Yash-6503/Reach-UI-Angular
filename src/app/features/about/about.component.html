@@ -1,24 +1,69 @@
 <!-- src/app/features/about/about.component.html -->
 
-<!-- Hero Banner -->
+<!-- ── Hero ─────────────────────────────────────────── -->
 <section class="page-hero">
+  <!-- Ambient blobs -->
+  <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--3" aria-hidden="true"></div>
+  <!-- Grid texture -->
+  <div class="hero-grid" aria-hidden="true"></div>
+
   <div class="container">
-    <h1>About Reach AI MedTech</h1>
-    <p>
-      We're reimagining healthcare delivery in India through AI-powered kiosk technology and telemedicine
-      infrastructure. Our mission is to make quality healthcare accessible to everyone, everywhere.
-    </p>
+    <div class="hero-content" [class.is-visible]="heroVisible()">
+      <span class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Who We Are
+      </span>
+      <h1>About Reach AI MedTech</h1>
+      <p>
+        We're reimagining healthcare delivery in India through AI-powered kiosk technology and telemedicine
+        infrastructure. Our mission is to make quality healthcare accessible to everyone, everywhere.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat__val">
+            {{ stat1() }}<span class="hero-stat__suffix">+</span>
+          </span>
+          <span class="hero-stat__label">Locations</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat__val">
+            {{ stat2() }}<span class="hero-stat__suffix">M+</span>
+          </span>
+          <span class="hero-stat__label">Patients Served</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat__val hero-stat__val--text" [class.is-visible]="stat3()">
+            {{ stat3() || '&nbsp;' }}
+          </span>
+          <span class="hero-stat__label">Certified</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Mission -->
-<section class="section">
+<!-- ── Mission ──────────────────────────────────────── -->
+<section class="section mission-section">
+  <div class="section-blur-veil" [class.veil-hidden]="missionVisible()" aria-hidden="true"></div>
   <div class="container">
     <div class="grid-2 items-center">
-      <div class="about-img-placeholder">
-        <img src="assets/images/reachimg.jpg" alt="Our Vision" class="rounded-img" loading="lazy" />
+      <div class="about-img-wrap reveal-left" [class.revealed]="missionVisible()">
+        <div class="img-glow" aria-hidden="true"></div>
+        <img src="assets/images/reachimg2.webp" alt="Our Vision" class="rounded-img" loading="lazy" />
+        <!-- Floating badge -->
+        <div class="img-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          ABDM Compatible
+        </div>
       </div>
-      <div>
+      <div class="reveal-right" [class.revealed]="missionVisible()">
+        <span class="section-eyebrow">Our Purpose</span>
         <h2 class="section-heading">Our Mission</h2>
         <p class="text-body">
           To expand access to quality healthcare by enabling intelligent, technology-driven health services
@@ -30,9 +75,13 @@
           expertise directly to communities.
         </p>
         <ul class="highlight-list">
-          @for (item of highlights; track item) {
-            <li>
-              <span class="dot dot--blue"></span>
+          @for (item of highlights; track item; let i = $index) {
+            <li [style.transition-delay]="(i * 80) + 'ms'">
+              <span class="highlight-check">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
               {{ item }}
             </li>
           }
@@ -42,26 +91,31 @@
   </div>
 </section>
 
-<!-- Vision -->
-<section class="section section--gray">
+<!-- ── Vision ───────────────────────────────────────── -->
+<section class="section section--gray vision-section">
+  <div class="section-blur-veil" [class.veil-hidden]="visionVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="section-heading text-center">Our Vision</h2>
-    <div class="grid-3" style="margin-top:3rem">
-      @for (v of visionCards; track v.title) {
-        <div class="vision-card">
+    <div class="section-header reveal-up" [class.revealed]="visionVisible()">
+      <span class="section-eyebrow">What Drives Us</span>
+      <h2 class="section-heading text-center">Our Vision</h2>
+      <p class="section-sub">Building a future where world-class healthcare reaches every corner of India.</p>
+    </div>
+    <div class="grid-3 vision-grid">
+      @for (v of visionCards; track v.title; let i = $index) {
+        <div class="vision-card reveal-up" [class.revealed]="visionVisible()" [style.transition-delay]="(120 + i * 100) + 'ms'">
           <div class="icon-box icon-box--blue">
             @if (v.icon === 'zap') {
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
               </svg>
             }
             @if (v.icon === 'award') {
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
               </svg>
             }
             @if (v.icon === 'users') {
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
                 <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
               </svg>
@@ -75,15 +129,19 @@
   </div>
 </section>
 
-<!-- Why Choose -->
-<section class="section">
+<!-- ── Why Choose ───────────────────────────────────── -->
+<section class="section reasons-section">
+  <div class="section-blur-veil" [class.veil-hidden]="reasonVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="section-heading text-center">Why Choose Reach AI</h2>
-    <div class="grid-2" style="margin-top:3rem">
+    <div class="section-header reveal-up" [class.revealed]="reasonVisible()">
+      <span class="section-eyebrow">Our Advantages</span>
+      <h2 class="section-heading text-center">Why Choose Reach AI</h2>
+    </div>
+    <div class="grid-2 reasons-grid">
       @for (r of reasons; track r.title; let i = $index) {
-        <div class="reason-item">
+        <div class="reason-item reveal-up" [class.revealed]="reasonVisible()" [style.transition-delay]="(100 + i * 80) + 'ms'">
           <div class="reason-num">{{ i + 1 }}</div>
-          <div>
+          <div class="reason-body">
             <h3>{{ r.title }}</h3>
             <p>{{ r.desc }}</p>
           </div>
@@ -93,13 +151,27 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section cta-section--flat">
+<!-- ── CTA ──────────────────────────────────────────── -->
+<section class="cta-section" [class.is-visible]="ctaVisible()">
+  <!-- Blobs -->
+  <div class="cta-blob cta-blob--1" aria-hidden="true"></div>
+  <div class="cta-blob cta-blob--2" aria-hidden="true"></div>
+  <div class="section-blur-veil cta-veil" [class.veil-hidden]="ctaVisible()" aria-hidden="true"></div>
+
   <div class="container text-center">
-    <h2>Let's Transform Healthcare Together</h2>
-    <p>
-      Join healthcare providers and organizations using Reach AI to improve patient outcomes and scale healthcare access.
-    </p>
-    <a routerLink="/contact" class="btn btn--white">Get Started</a>
+    <div class="cta-content">
+      <span class="section-eyebrow eyebrow--light">Join Us</span>
+      <h2>Let's Transform Healthcare Together</h2>
+      <p>
+        Join healthcare providers and organizations using Reach AI to improve patient outcomes
+        and scale healthcare access.
+      </p>
+      <a routerLink="/contact" class="btn-cta">
+        <span>Get Started</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>

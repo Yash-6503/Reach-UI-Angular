@@ -1,19 +1,34 @@
 <!-- src/app/features/resources/resources.component.html -->
 
+<!-- ── Hero ─────────────────────────────────────────── -->
 <section class="page-hero">
+  <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
   <div class="container">
-    <h1>Resources</h1>
-    <p>Download comprehensive guides, documentation, and materials to help you succeed with Reach AI.</p>
+    <div class="hero-content" [class.is-visible]="heroVisible()">
+      <span class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Knowledge Hub
+      </span>
+      <h1>Resources</h1>
+      <p>Download comprehensive guides, documentation, and materials to help you succeed with Reach AI.</p>
+    </div>
   </div>
 </section>
 
-<!-- Downloads -->
-<section class="section">
+<!-- ── Downloads ─────────────────────────────────────── -->
+<section class="section download-section">
+  <div class="section-veil" [class.veil-gone]="downloadVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="sec-heading">Download Resources</h2>
+    <div class="section-header reveal-up" [class.revealed]="downloadVisible()">
+      <span class="sec-eyebrow">Downloads</span>
+      <h2 class="sec-heading">Download Resources</h2>
+    </div>
     <div class="grid-3">
-      @for (res of resources; track res.title) {
-        <div class="res-card">
+      @for (res of resources; track res.title; let i = $index) {
+        <div class="res-card reveal-up" [class.revealed]="downloadVisible()" [style.transition-delay]="(80 + i * 80) + 'ms'">
           <div class="res-icon">{{ res.icon }}</div>
           <h3>{{ res.title }}</h3>
           <p>{{ res.description }}</p>
@@ -21,8 +36,11 @@
             <span class="res-type">{{ res.type }}</span>
             <button class="dl-btn" title="Download">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
               </svg>
+              <span class="dl-btn__ripple"></span>
             </button>
           </div>
         </div>
@@ -31,17 +49,48 @@
   </div>
 </section>
 
-<!-- Categories -->
-<section class="section section--gray">
+<!-- ── Categories ────────────────────────────────────── -->
+<section class="section section--gray category-section">
+  <div class="section-veil veil--gray" [class.veil-gone]="categoryVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="sec-heading text-center">Resource Categories</h2>
+    <div class="section-header reveal-up" [class.revealed]="categoryVisible()">
+      <span class="sec-eyebrow">Browse</span>
+      <h2 class="sec-heading">Resource Categories</h2>
+    </div>
     <div class="grid-4">
-      @for (cat of categories; track cat.title) {
-        <div class="cat-card">
+      @for (cat of categories; track cat.title; let i = $index) {
+        <div class="cat-card reveal-up" [class.revealed]="categoryVisible()" [style.transition-delay]="(100 + i * 90) + 'ms'">
+          <div class="cat-card__icon" aria-hidden="true">
+            @if (i === 0) {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+              </svg>
+            }
+            @if (i === 1) {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            }
+            @if (i === 2) {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            }
+            @if (i === 3) {
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+              </svg>
+            }
+          </div>
           <h3>{{ cat.title }}</h3>
           <ul>
             @for (item of cat.items; track item) {
-              <li>• {{ item }}</li>
+              <li>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+                {{ item }}
+              </li>
             }
           </ul>
         </div>
@@ -50,27 +99,51 @@
   </div>
 </section>
 
-<!-- Knowledge Base -->
-<section class="section">
+<!-- ── Knowledge Base ─────────────────────────────────── -->
+<section class="section kb-section">
+  <div class="section-veil" [class.veil-gone]="kbVisible()" aria-hidden="true"></div>
   <div class="container">
-    <h2 class="sec-heading">Knowledge Base</h2>
+    <div class="section-header reveal-up" [class.revealed]="kbVisible()">
+      <span class="sec-eyebrow">Learn</span>
+      <h2 class="sec-heading">Knowledge Base</h2>
+    </div>
     <div class="grid-2">
-      @for (kb of knowledgeBase; track kb.title) {
-        <a [routerLink]="kb.route" class="kb-card">
-          <h3>{{ kb.title }}</h3>
-          <p>{{ kb.desc }}</p>
-          <span class="kb-link">Explore →</span>
+      @for (kb of knowledgeBase; track kb.title; let i = $index) {
+        <a [routerLink]="kb.route" class="kb-card reveal-up" [class.revealed]="kbVisible()" [style.transition-delay]="(100 + i * 80) + 'ms'">
+          <div class="kb-card__num">0{{ i + 1 }}</div>
+          <div class="kb-card__body">
+            <h3>{{ kb.title }}</h3>
+            <p>{{ kb.desc }}</p>
+            <span class="kb-link">
+              Explore
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
         </a>
       }
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
+<!-- ── CTA ──────────────────────────────────────────── -->
+<section class="cta-section" [class.is-visible]="ctaVisible()">
+  <div class="cta-blob cta-blob--1" aria-hidden="true"></div>
+  <div class="cta-blob cta-blob--2" aria-hidden="true"></div>
+  <div class="section-veil veil--cta" [class.veil-gone]="ctaVisible()" aria-hidden="true"></div>
+
   <div class="container text-center">
-    <h2>Need Custom Resources?</h2>
-    <p>We can create custom documentation, training materials, or deployment guides for your organization.</p>
-    <a routerLink="/contact" class="btn btn--white">Request Custom Materials</a>
+    <div class="cta-content">
+      <span class="sec-eyebrow eyebrow--light">Custom Support</span>
+      <h2>Need Custom Resources?</h2>
+      <p>We can create custom documentation, training materials, or deployment guides for your organization.</p>
+      <a routerLink="/contact" class="btn-cta">
+        <span>Request Custom Materials</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
