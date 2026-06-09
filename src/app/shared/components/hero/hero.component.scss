@@ -2,9 +2,8 @@
 @use '../../../../styles/styles' as *;
 
 // ─── Design Tokens ─────────────────────────────────────────────
-// ✅ ONE brand color used everywhere — matches your Contact button
-$brand:           #0d9488;   // ← teal-green, same as Contact button
-$brand-dark:      #0a7a70;   // ← darker shade for hover/gradient end
+$brand:           #0d9488;
+$brand-dark:      #0a7a70;
 $brand-glow:      rgba(13, 148, 136, 0.38);
 $brand-glow-lg:   rgba(13, 148, 136, 0.52);
 
@@ -39,17 +38,13 @@ $bp-lg:  1024px;
   to   { transform: scaleX(1); }
 }
 
-@keyframes bgZoom {
-  from { transform: scale(1.06); }
-  to   { transform: scale(1.0); }
-}
-
 // ─── Hero Shell ─────────────────────────────────────────────────
 
 .hero {
   position: relative;
   width: 100vw;
-  min-height: 100vh;
+  height: 100svh;           // svh = small viewport height, accounts for mobile browser chrome
+  min-height: 680px;        // floor so stat labels always have room
   overflow: hidden;
   background: $hero-darker;
   display: flex;
@@ -62,7 +57,7 @@ $bp-lg:  1024px;
   position: relative;
   flex: 1;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
 }
 
 // ─── Individual Slide ────────────────────────────────────────────
@@ -70,10 +65,9 @@ $bp-lg:  1024px;
 .hero__slide {
   position: absolute;
   inset: 0;
-  width: 100%;
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;     // stack content + nav area vertically
+  justify-content: flex-start;
 
   opacity: 0;
   pointer-events: none;
@@ -99,8 +93,6 @@ $bp-lg:  1024px;
 .hero__slide-bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -109,9 +101,7 @@ $bp-lg:  1024px;
   will-change: transform;
   z-index: 0;
 
-  .is-active & {
-    transform: scale(1.0);
-  }
+  .is-active & { transform: scale(1.0); }
 }
 
 // ─── Overlay ─────────────────────────────────────────────────────
@@ -143,26 +133,22 @@ $bp-lg:  1024px;
   will-change: transform, opacity;
 
   &--tl {
-    width: 520px;
-    height: 520px;
-    top: -220px;
-    left: -160px;
-    // ✅ teal-green blobs matching brand
+    width: 520px; height: 520px;
+    top: -220px; left: -160px;
     background: radial-gradient(circle, rgba(13, 148, 136, 0.32), rgba(13, 148, 136, 0.08));
     animation-delay: 0s, 0s;
   }
 
   &--br {
-    width: 440px;
-    height: 440px;
-    bottom: -180px;
-    right: -100px;
+    width: 440px; height: 440px;
+    bottom: -180px; right: -100px;
     background: radial-gradient(circle, rgba(13, 148, 136, 0.22), rgba(20, 184, 166, 0.06));
     animation-delay: -9s, -4s;
   }
 }
 
 // ─── Container ───────────────────────────────────────────────────
+// Uses flex column so the stats row is always above the nav area.
 
 .hero__container {
   position: relative;
@@ -170,10 +156,18 @@ $bp-lg:  1024px;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 9rem 2rem 7rem;
+
+  // top clears navbar; bottom must clear nav dots (≈42px) + progress bar + breathing room
+  // nav is at bottom: 1.75rem (~28px) + 42px height = ~70px from bottom
+  // stat label is ~1rem tall → need at least 7rem bottom padding
+  padding: 9rem 2rem 8rem;
 
   @media (min-width: $bp-lg) {
     padding: 10rem 3rem 8rem;
+  }
+
+  @media (max-width: $bp-md) {
+    padding: 7rem 1.5rem 8rem;
   }
 }
 
@@ -183,6 +177,7 @@ $bp-lg:  1024px;
   max-width: 680px;
   display: flex;
   flex-direction: column;
+  overflow: visible;         // critical — prevents animation translateY from clipping labels
 
   @media (max-width: $bp-md) {
     max-width: 100%;
@@ -198,7 +193,6 @@ $bp-lg:  1024px;
   align-items: center;
   gap: 0.45rem;
   padding: 0.42rem 1rem;
-  // ✅ teal-green badge
   background: rgba(13, 148, 136, 0.14);
   border: 1px solid rgba(13, 148, 136, 0.35);
   border-radius: 100px;
@@ -206,7 +200,7 @@ $bp-lg:  1024px;
   font-size: 0.80rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.2rem;
   width: fit-content;
   backdrop-filter: blur(10px);
 }
@@ -214,11 +208,11 @@ $bp-lg:  1024px;
 // ─── Headline ────────────────────────────────────────────────────
 
 .hero__headline {
-  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  font-size: clamp(1.8rem, 4vw, 3.4rem);   // slightly smaller so content fits
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.025em;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.2rem;
   background: linear-gradient(140deg, #F8FAFC 35%, #5eead4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -228,15 +222,13 @@ $bp-lg:  1024px;
 // ─── Subheadline ─────────────────────────────────────────────────
 
 .hero__sub {
-  font-size: clamp(0.98rem, 1.6vw, 1.15rem);
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   color: $hero-muted;
-  line-height: 1.82;
-  margin: 0 0 2.4rem;
+  line-height: 1.75;
+  margin: 0 0 1.8rem;
   max-width: 540px;
 
-  @media (max-width: $bp-md) {
-    max-width: 100%;
-  }
+  @media (max-width: $bp-md) { max-width: 100%; }
 }
 
 // ─── Actions ─────────────────────────────────────────────────────
@@ -245,11 +237,9 @@ $bp-lg:  1024px;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 
-  @media (max-width: $bp-md) {
-    justify-content: center;
-  }
+  @media (max-width: $bp-md) { justify-content: center; }
 }
 
 // ─── Buttons ─────────────────────────────────────────────────────
@@ -276,7 +266,6 @@ $bp-lg:  1024px;
   }
   &:hover svg { transform: translateX(4px); }
 
-  // ✅ Primary — solid teal-green, same as Contact button
   &--primary {
     background: linear-gradient(135deg, $brand, $brand-dark);
     color: #fff;
@@ -284,8 +273,7 @@ $bp-lg:  1024px;
 
     &::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 55%);
       opacity: 0;
       transition: opacity 260ms ease;
@@ -300,7 +288,6 @@ $bp-lg:  1024px;
     &:active { transform: translateY(-1px); }
   }
 
-  // ✅ Ghost — teal-green border tint, same brand color on hover
   &--ghost {
     color: rgba(255,255,255,0.86);
     border: 1.5px solid rgba(13, 148, 136, 0.45);
@@ -318,12 +305,16 @@ $bp-lg:  1024px;
 }
 
 // ─── Stats ───────────────────────────────────────────────────────
+// Sits ABOVE the nav bar; bottom padding on .hero__container
+// guarantees it never hides under the dots.
 
 .hero__stats {
   display: flex;
   gap: 2.5rem;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid $hero-border;
+  position: relative;
+  z-index: 6;              // above slide overlay, never hidden
 
   @media (max-width: $bp-md) {
     justify-content: center;
@@ -338,33 +329,38 @@ $bp-lg:  1024px;
 .hero__stat {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.22rem;
+  overflow: visible;
 }
 
 .hero__stat-value {
   font-size: 1.7rem;
   font-weight: 800;
   line-height: 1;
-  // ✅ teal-green gradient on stat numbers
   background: linear-gradient(135deg, #fff 40%, #5eead4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+// Labels are always visible — explicit sizing prevents animation clipping
 .hero__stat-label {
   font-size: 0.72rem;
   color: $hero-muted;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
+  display: block;
+  line-height: 1.4;
+  min-height: 1rem;        // reserves space even if text renders slowly
 }
 
 // ─── Navigation ──────────────────────────────────────────────────
 
 .hero__nav {
   position: absolute;
-  bottom: 2.8rem;
+  bottom: 2.25rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -373,10 +369,8 @@ $bp-lg:  1024px;
   gap: 1.2rem;
 }
 
-// ✅ Nav prev/next buttons — teal-green on hover
 .hero__nav-btn {
-  width: 42px;
-  height: 42px;
+  width: 42px; height: 42px;
   border-radius: 50%;
   border: 1.5px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,0.08);
@@ -393,8 +387,8 @@ $bp-lg:  1024px;
     transform 240ms $ease-spring;
 
   &:hover {
-    background: rgba(13, 148, 136, 0.32);      // ✅ teal-green
-    border-color: rgba(13, 148, 136, 0.65);    // ✅ teal-green
+    background: rgba(13, 148, 136, 0.32);
+    border-color: rgba(13, 148, 136, 0.65);
     color: #fff;
     transform: scale(1.10);
   }
@@ -409,10 +403,8 @@ $bp-lg:  1024px;
   gap: 0.5rem;
 }
 
-// ✅ Active dot — teal-green
 .hero__dot {
-  width: 28px;
-  height: 6px;
+  width: 28px; height: 6px;
   border-radius: 100px;
   border: none;
   padding: 0;
@@ -424,7 +416,7 @@ $bp-lg:  1024px;
 
   &.is-active {
     width: 50px;
-    background: rgba(13, 148, 136, 0.45);     // ✅ teal-green
+    background: rgba(13, 148, 136, 0.45);
     .hero__dot-fill { opacity: 1; }
   }
   &:hover:not(.is-active) {
@@ -435,7 +427,6 @@ $bp-lg:  1024px;
 .hero__dot-fill {
   position: absolute;
   inset: 0;
-  // ✅ teal-green gradient fill
   background: linear-gradient(90deg, #0d9488, #14b8a6);
   border-radius: inherit;
   opacity: 0;
@@ -446,15 +437,12 @@ $bp-lg:  1024px;
 
 .hero__progress {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 3px;
   background: rgba(255,255,255,0.06);
   z-index: 25;
 }
 
-// ✅ Progress bar — teal-green
 .hero__progress-bar {
   height: 100%;
   background: linear-gradient(90deg, #0d9488, #14b8a6);
@@ -463,29 +451,70 @@ $bp-lg:  1024px;
   animation: none;
 
   &.is-running {
-    animation: progressRun 5s linear forwards;
+    animation: progressRun 8s linear forwards;
+  }
+}
+
+// ─── Side Arrows ─────────────────────────────────────────────────
+
+.hero__side-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 240ms $ease-spring,
+    border-color 240ms ease,
+    transform 240ms $ease-spring;
+
+  &--left  { left: 1.5rem; }
+  &--right { right: 1.5rem; }
+
+  &:hover {
+    background: rgba(13, 148, 136, 0.32);
+    border-color: rgba(13, 148, 136, 0.65);
+    color: #fff;
+    transform: translateY(-50%) scale(1.10);
+  }
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  @media (max-width: $bp-md) {
+    width: 40px; height: 40px;
+    &--left  { left: 0.75rem; }
+    &--right { right: 0.75rem; }
   }
 }
 
 // ─── Mobile ──────────────────────────────────────────────────────
 
 @media (max-width: $bp-md) {
-  .hero__container {
-    padding-top: 7rem;
-    padding-bottom: 6rem;
-  }
 
   .hero__nav {
-    bottom: 1.6rem;
+    bottom: 1.2rem;
     gap: 0.9rem;
   }
 
   .hero__nav-btn {
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
   }
 
   .hero__stat-value {
     font-size: 1.35rem;
+  }
+
+  .hero__stat-label {
+    font-size: 0.65rem;
   }
 }

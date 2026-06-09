@@ -164,7 +164,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   animTrigger = computed(() => this.current());
 
   private interval: ReturnType<typeof setInterval> | null = null;
-  private readonly AUTO_DELAY = 5000;
+  private readonly AUTO_DELAY = 8000;
 
   constructor(private cdr: ChangeDetectorRef, private zone: NgZone) {}
 

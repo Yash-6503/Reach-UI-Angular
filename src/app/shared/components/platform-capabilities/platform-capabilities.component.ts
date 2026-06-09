@@ -31,27 +31,15 @@ implements AfterViewInit, OnDestroy {
       title: 'Patient Management',
 
       description:
-        'Complete digital health records management',
+        'Centralized patient registration and digital health record management',
 
       features: [
-        'Digital registration',
-        'EMR system',
-        'Health records',
-        'Cloud storage'
-      ]
-    },
-
-    {
-      title: 'Diagnostics Ecosystem',
-
-      description:
-        'Integrated diagnostic devices and AI analysis',
-
-      features: [
-        'BP, Temperature, SpO2',
-        'ECG, Blood Glucose',
-        'AI Stethoscope',
-        'Vision testing'
+        'Patient Registration & Onboarding',
+        'ABDM Integration',
+        'Vital Signs Capture',
+        'Electronic Medical Records',
+        'Visit History Tracking',
+        'Secure Cloud Records'
       ]
     },
 
@@ -59,13 +47,46 @@ implements AfterViewInit, OnDestroy {
       title: 'Telemedicine Platform',
 
       description:
-        'Secure doctor-patient consultations',
+        'Secure doctor-patient consultations from anywhere',
 
       features: [
-        'Video consultation',
-        'E-prescription',
-        'Specialist referral',
-        'Audio consultation'
+        'Video & Audio Consultation',
+        'Digital Prescriptions',
+        'Specialist Referrals',
+        'Vitals Review',
+        'Consultation History'
+      ]
+    },
+
+    {
+      title: 'Pharmacy Management',
+
+      description:
+        'Integrated prescription and medicine fulfillment ecosystem',
+
+      features: [
+        'E-Prescriptions',
+        'Medicine Ordering',
+        'Inventory Tracking',
+        'Medicine Dispensing',
+        'Pharmacy Integration',
+        'Order Tracking'
+      ]
+    },
+
+    {
+      title: 'Diagnostics Ecosystem',
+
+      description:
+        'End-to-end diagnostic testing and report management',
+
+      features: [
+        'Test Booking',
+        'Sample Collection',
+        'Device Integration',
+        'Lab Connectivity',
+        'Report Retrieval',
+        'Result History'
       ]
     },
 
@@ -73,13 +94,15 @@ implements AfterViewInit, OnDestroy {
       title: 'Analytics & Reporting',
 
       description:
-        'Advanced insights and performance tracking',
+        'Actionable insights for healthcare operations and outcomes',
 
       features: [
-        'Usage analytics',
-        'Health trends',
-        'Device monitoring',
-        'Outcome tracking'
+        'Health Trends',
+        'Consultation Analytics',
+        'Diagnostic Reports',
+        'Device Monitoring',
+        'Outcome Tracking',
+        'Executive Dashboards'
       ]
     }
 
@@ -88,51 +111,37 @@ implements AfterViewInit, OnDestroy {
   aiFeatures = [
 
     {
-      title:
-        'AI Health Assessment',
-
-      desc:
-        'Intelligent symptom analysis and risk detection'
+      title: 'AI Health Assessment',
+      desc:  'Predictive symptom and risk analysis'
     },
 
     {
-      title:
-        'Clinical Summary Generation',
-
-      desc:
-        'Automated medical report creation'
+      title: 'Clinical Summary Generation',
+      desc:  'Automated consultation documentation'
     },
 
     {
-      title:
-        'Smart Reporting',
-
-      desc:
-        'Real-time analytics and insights'
+      title: 'Smart Reporting',
+      desc:  'Real-time healthcare intelligence'
     },
 
     {
-      title:
-        'Multi-Language Support',
-
-      desc:
-        'Accessible to regional users'
+      title: 'Multi-Language Support',
+      desc:  'Regional language interactions'
     },
 
     {
-      title:
-        'Risk Flagging',
-
-      desc:
-        'Automatic alert for abnormal conditions'
+      title: 'Risk Flagging',
+      desc:  'Early detection of critical conditions'
     },
 
     {
-      title:
-        'Voice to Text',
-
-      desc:
-        'Hands-free medical documentation'
+      title: 'Voice to Text',
+      desc:  'Hands-free clinical documentation'
+    },
+     {
+      title: 'AI Clinical Review',
+      desc:  'Patient history and report analysis'
     }
 
   ];
@@ -140,44 +149,29 @@ implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
 
     const section =
-      this.el.nativeElement.querySelector(
-        '.platform'
-      );
+      this.el.nativeElement.querySelector('.platform');
 
-    if (!section) {
-      return;
-    }
+    if (!section) return;
 
-    this.observer =
-      new IntersectionObserver(
+    this.observer = new IntersectionObserver(
 
-        ([entry]) => {
+      ([entry]) => {
 
-          if (
-            entry.isIntersecting
-          ) {
+        if (entry.isIntersecting) {
 
-            section.classList.add(
-              'visible'
-            );
+          section.classList.add('visible');
 
-            /* run animation once */
+          this.observer?.disconnect();
 
-            this.observer?.disconnect();
-
-          }
-
-        },
-
-        {
-          threshold: 0.25
         }
 
-      );
+      },
 
-    this.observer.observe(
-      section
+      { threshold: 0.25 }
+
     );
+
+    this.observer.observe(section);
 
   }
 
